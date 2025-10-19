@@ -17,18 +17,18 @@ import InfoScreen from './queenwatchsrc/queenwatchscreens/InfoScreen';
 
 // Tab icons
 const TAB_ICONS = {
-  Game: require('./queenwatchsrc/queenwatchphotos/board.png'),
-  Statistics: require('./queenwatchsrc/queenwatchphotos/i.png'),
-  Rules: require('./queenwatchsrc/queenwatchphotos/pric.png'),
-  Info: require('./queenwatchsrc/queenwatchphotos/more.png'),
+  Game: require('./queenwatchsrc/queenwatchphotos/pric.png'),
+  Statistics: require('./queenwatchsrc/queenwatchphotos/board.png'),
+  Rules: require('./queenwatchsrc/queenwatchphotos/more.png'),
+  Info: require('./queenwatchsrc/queenwatchphotos/i.png'),
 };
 
 // Tab icons for active state
 const TAB_ICONS_ACTIVE = {
-  Game: require('./queenwatchsrc/queenwatchphotos/board.png'),
+  Game: require('./queenwatchsrc/queenwatchphotos/pric.png'),
   Statistics: require('./queenwatchsrc/queenwatchphotos/i.png'),
-  Rules: require('./queenwatchsrc/queenwatchphotos/pric.png'),
-  Info: require('./queenwatchsrc/queenwatchphotos/more.png'),
+  Rules: require('./queenwatchsrc/queenwatchphotos/board.png'),
+  Info: require('./queenwatchsrc/queenwatchphotos/i.png'),
 };
 
 const Tab = createBottomTabNavigator();
@@ -108,16 +108,12 @@ function App() {
   }, []);
 
   const checkOnboardingStatus = async () => {
-    try {
-      const onboardingCompleted = await AsyncStorage.getItem('onboardingCompleted');
-      setShowOnboarding(onboardingCompleted !== 'true');
-    } catch (error) {
-      console.error('Error checking onboarding status:', error);
-      setShowOnboarding(true);
-    }
+    // Always show onboarding
+    setShowOnboarding(true);
   };
 
   const handleOnboardingComplete = () => {
+    // Don't save to AsyncStorage - always show onboarding
     setShowOnboarding(false);
   };
 
