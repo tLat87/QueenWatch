@@ -32,7 +32,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>This app does not use location services.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app uses the photo library to allow you to share game results and app information with friends through the native share functionality.</string>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
