@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar, StyleSheet, View, Image } from 'react-native';
+import { StatusBar, StyleSheet, View, Image, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Import screens
@@ -14,21 +14,26 @@ import PartyGameScreen from './queenwatchsrc/queenwatchscreens/PartyGameScreen';
 import StatisticsScreen from './queenwatchsrc/queenwatchscreens/StatisticsScreen';
 import RulesScreen from './queenwatchsrc/queenwatchscreens/RulesScreen';
 import InfoScreen from './queenwatchsrc/queenwatchscreens/InfoScreen';
+import TrainingModeScreen from './queenwatchsrc/queenwatchscreens/TrainingModeScreen';
+import AchievementsScreen from './queenwatchsrc/queenwatchscreens/AchievementsScreen';
+import DailyChallengesScreen from './queenwatchsrc/queenwatchscreens/DailyChallengesScreen';
 
-// Tab icons
+// Tab icons with emojis
 const TAB_ICONS = {
-  Game: require('./queenwatchsrc/queenwatchphotos/pric.png'),
-  Statistics: require('./queenwatchsrc/queenwatchphotos/board.png'),
-  Rules: require('./queenwatchsrc/queenwatchphotos/more.png'),
-  Info: require('./queenwatchsrc/queenwatchphotos/i.png'),
+  Game: '🎮',
+  Training: '💪',
+  Challenges: '🏆',
+  Statistics: '📊',
+  Info: 'ℹ️',
 };
 
-// Tab icons for active state
+// Tab icons for active state (same emojis)
 const TAB_ICONS_ACTIVE = {
-  Game: require('./queenwatchsrc/queenwatchphotos/pric.png'),
-  Statistics: require('./queenwatchsrc/queenwatchphotos/i.png'),
-  Rules: require('./queenwatchsrc/queenwatchphotos/board.png'),
-  Info: require('./queenwatchsrc/queenwatchphotos/i.png'),
+  Game: '🎮',
+  Training: '💪',
+  Challenges: '🏆',
+  Statistics: '📊',
+  Info: 'ℹ️',
 };
 
 const Tab = createBottomTabNavigator();
@@ -36,22 +41,16 @@ const Stack = createStackNavigator();
 
 // Custom Tab Icon Component
 const TabIcon = ({ route, focused, size }: { route: any; focused: boolean; size: number }) => {
-  const iconSource = focused ? TAB_ICONS_ACTIVE[route.name as keyof typeof TAB_ICONS_ACTIVE] : TAB_ICONS[route.name as keyof typeof TAB_ICONS];
+  const iconEmoji = TAB_ICONS[route.name as keyof typeof TAB_ICONS];
   
   return (
     <View style={[
       styles.tabIconContainer,
       focused ? styles.tabIconContainerActive : styles.tabIconContainerInactive
     ]}>
-      <Image
-        source={iconSource}
-        style={{
-          width: size,
-          height: size,
-          tintColor: focused ? '#FFFFFF' : '#8B5CF6',
-        }}
-        resizeMode="contain"
-      />
+      <Text style={styles.tabIconEmoji}>
+        {iconEmoji}
+      </Text>
     </View>
   );
 };
@@ -93,8 +92,9 @@ function TabNavigator() {
       })}
     >
       <Tab.Screen name="Game" component={GameStack} />
+      <Tab.Screen name="Training" component={TrainingModeScreen} />
+      <Tab.Screen name="Challenges" component={DailyChallengesScreen} />
       <Tab.Screen name="Statistics" component={StatisticsScreen} />
-      <Tab.Screen name="Rules" component={RulesScreen} />
       <Tab.Screen name="Info" component={InfoScreen} />
     </Tab.Navigator>
   );
@@ -159,6 +159,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#8B5CF6',
+  },
+  tabIconEmoji: {
+    fontSize: 24,
   },
 });
 
