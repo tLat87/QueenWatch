@@ -17,12 +17,16 @@ import InfoScreen from './queenwatchsrc/queenwatchscreens/InfoScreen';
 import TrainingModeScreen from './queenwatchsrc/queenwatchscreens/TrainingModeScreen';
 import AchievementsScreen from './queenwatchsrc/queenwatchscreens/AchievementsScreen';
 import DailyChallengesScreen from './queenwatchsrc/queenwatchscreens/DailyChallengesScreen';
+import SettingsScreen from './queenwatchsrc/queenwatchscreens/SettingsScreen';
+import HelpScreen from './queenwatchsrc/queenwatchscreens/HelpScreen';
 
 // Tab icons with emojis
 const TAB_ICONS = {
   Game: '🎮',
   Training: '💪',
   Challenges: '🏆',
+  Settings: '⚙️',
+  Help: '❓',
   Statistics: '📊',
   Info: 'ℹ️',
 };
@@ -32,6 +36,8 @@ const TAB_ICONS_ACTIVE = {
   Game: '🎮',
   Training: '💪',
   Challenges: '🏆',
+  Settings: '⚙️',
+  Help: '❓',
   Statistics: '📊',
   Info: 'ℹ️',
 };
@@ -94,6 +100,8 @@ function TabNavigator() {
       <Tab.Screen name="Game" component={GameStack} />
       <Tab.Screen name="Training" component={TrainingModeScreen} />
       <Tab.Screen name="Challenges" component={DailyChallengesScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Help" component={HelpScreen} />
       <Tab.Screen name="Statistics" component={StatisticsScreen} />
       <Tab.Screen name="Info" component={InfoScreen} />
     </Tab.Navigator>
